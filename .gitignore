@@ -1,0 +1,14 @@
+#vulcan
+/modules/API/Vulkan/**
+#glfw
+/modules/GUI/glfw-3.4/**
+
+#src glfw
+!/modules/GUI/glfw-3.4/
+!/modules/GUI/glfw-3.4/src/
+!/modules/GUI/glfw-3.4/src/**
+
+#src vulkan
+!/modules/API/Vulkan/
+!/modules/API/Vulkan/Source/
+!/modules/API/Vulkan/Source/**
