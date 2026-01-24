@@ -47,7 +47,8 @@ public:
             glfwTerminate();
             throw std::runtime_error("La ventana no se inicio correctamente");
         }
-        
+        std::string resp = "Ventana Iniciada API: " +std::string(regist.api == 0 ? "Vulkan" : "OpenGL") +" X:" + std::to_string(regist.X) +" Y:" + std::to_string(regist.Y) +" con el nombre:" + regist.name;
+        return resp;
     }
     ~wall();
 };

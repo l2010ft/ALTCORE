@@ -6,7 +6,7 @@ private:
     struct wallP;
 public:
     wall(int Api,log& log);
-    void create(int X = 800,int Y = 600);
+    std::string create(int X = 800,int Y = 600);
 
     ~wall();
 };
