@@ -8,8 +8,10 @@ int main(){
     engine E;
     if (Vulkancheck()){
         E.engineRun(0);
+        return 1;
     }else{
         E.engineRun(1);
+        return 1;
     }
 }
 bool Vulkancheck(){

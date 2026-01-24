@@ -3,6 +3,7 @@
 #include "GUI/wall.h"
 #include <GLFW/glfw3.h>
 #include <vulkan/vulkan.h>
+#include <stdexcept>
 class engine
 {
 private:
@@ -15,8 +16,27 @@ public:
         if (type == 0)
         {
             L.info(std::string("Iniciando con vulkan..."));
+            try
+            {
+                wall gui(0,L);
+            }
+            catch(const std::exception& e)
+            {
+                L.critical(std::string(e.what()));
+            }
+
         }else{
             L.info(std::string("Iniciando con opengl..."));
+
+            try
+            {
+                wall gui(1,L);
+            }
+            catch(const std::exception& e)
+            {
+                L.critical(std::string(e.what()));
+            }
+
         }
         
     }
