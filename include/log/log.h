@@ -3,7 +3,7 @@
 class log
 {
 private:
-    void registerent(const std::string& text,const int& level);
+    void registerent(const std::string& text,const int level);
 public:
     log();
     void warn(const std::string& warns);

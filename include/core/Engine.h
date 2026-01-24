@@ -1,3 +1,5 @@
+#include "log/log.h"
+
 class engine
 {
 private:
