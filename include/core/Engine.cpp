@@ -1,6 +1,6 @@
 #include "Engine.h"
 #include "log/log.h"
-#include "wall/wall.h"
+#include "GUI/wall.h"
 #include <GLFW/glfw3.h>
 #include <vulkan/vulkan.h>
 class engine
