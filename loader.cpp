@@ -7,10 +7,10 @@ bool Vulkancheck();
 int main(){
     engine E;
     if (Vulkancheck()){
-        E.engineRun(0);
+        E.enginestart(0);
         return 1;
     }else{
-        E.engineRun(1);
+        E.enginestart(1);
         return 1;
     }
 }

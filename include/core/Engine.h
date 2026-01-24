@@ -1,9 +1,10 @@
 class engine
 {
 private:
-    /* data */
+    log L;
 public:
-    void engineRun(int type);
+    engine();
+    void enginestart(int type);
     ~engine();
 
     class make
