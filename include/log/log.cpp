@@ -28,8 +28,12 @@ private:
             Logfile << "[Critical]" << "[" + Noww + "]" << text + "\n";
         }else if (level == 3)
         {
-            Logfile << "[system]Logfile apagado :" << text; 
+            Logfile << "[system]Logfile apagado :" << text + "\n"; 
+        }else if (level == 4)
+        {
+            Logfile << "[Info]" << "[" + Noww + "]" << text + "\n";
         }
+        
         
         Logfile.close();
     }
@@ -53,6 +57,9 @@ public:
     }
     void critical(const std::string& critical){
         registerent(critical,2);
+    }
+    void info(const std::string& info){
+        registerent(info,4);
     }
     ~log(){
         registerent("system",3);

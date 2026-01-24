@@ -8,6 +8,16 @@ class engine
 private:
     /* data */
 public:
-    engine();
+    engine(){
+        log L;
+    }
+    void engineRun(int type){
+
+        if (type == 0)
+        {
+            
+        }
+        
+    }
     ~engine();
 };
