@@ -11,10 +11,22 @@ struct wall::wallP
     int X;
     int Y;
 };
+struct wall::Inputs
+{
+    bool keys[GLFW_KEY_LAST + 1]{};
+    bool mouseButtons[GLFW_MOUSE_BUTTON_LAST + 1]{};
+    double mouseX, mouseY;
+    double scrollX, scrollY;
+};
 
+struct wall::action
+{
+    bool action[4+1]{};
+    bool acionRec;
+};
 
 wall::wall(int Api)
-: data(std::unique_ptr<wallP>{})
+: data(std::unique_ptr<wallP>()) , inpu(std::unique_ptr<Inputs>()), actions(std::unique_ptr<action>())
 {
     if (!glfwInit)
     {
@@ -58,6 +70,11 @@ std::string wall::Setinput(){
     glfwSetScrollCallback(window,MouseScrl);
     glfwSetWindowCloseCallback(window,Onclose);
     glfwSetFramebufferSizeCallback(window,Rezise);
+
+    return std::string("Callbacks seteadas");
+}
+void wall::Keydown(GLFWwindow* window,int key,int scancode,int action,int mods){
+    
 }
 wall::~wall() {}
 
