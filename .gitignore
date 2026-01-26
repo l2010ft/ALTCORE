@@ -12,3 +12,5 @@
 !/modules/API/Vulkan/
 !/modules/API/Vulkan/Source/
 !/modules/API/Vulkan/Source/**
+
+/.vscode/

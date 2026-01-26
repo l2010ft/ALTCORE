@@ -18,7 +18,9 @@ private:
     static void MouseScrl(GLFWwindow* window,double xoffset,double yoffset);
     static void Onclose(GLFWwindow* window);
     static void Rezise(GLFWwindow* window,int width,int heigth);
-    
+    void KeyAction(int key,int action,int mod);
+    void MousechKey(int key,int action,int mod);
+    void Onmousemove(double xpos,double ypos);
 public:
     wall(int Api);
     std::string create(int X = 800,int Y = 600,std::string names = "ALTCORE");

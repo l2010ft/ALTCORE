@@ -21,8 +21,10 @@ struct wall::Inputs
 
 struct wall::action
 {
-    bool action[4+1]{};
-    bool acionRec;
+    bool Keychange = false;
+    bool mouseButtonsch = false;
+    bool mouseMoved = false;
+    bool scrolled = false; 
 };
 
 wall::wall(int Api)
@@ -74,6 +76,60 @@ std::string wall::Setinput(){
     return std::string("Callbacks seteadas");
 }
 void wall::Keydown(GLFWwindow* window,int key,int scancode,int action,int mods){
+    wall* self = static_cast<wall*>(glfwGetWindowUserPointer(window));
+
+    if(!self) return;
+
+    self -> KeyAction(key,action,mods);
+}
+
+void wall::KeyAction(int key,int action,int mod){
+
+    if (key > 0) return;
+    if(action == GLFW_PRESS)
+    {
+        inpu ->keys[key] = true;
+        actions -> Keychange = true;
+    }
+    if(action == GLFW_RELEASE)
+    {
+        inpu ->keys[key] = false;
+        actions -> Keychange = true;
+    }
+}
+
+void wall::MouseKey(GLFWwindow* window,int key,int action,int mods){
+    wall* self = static_cast<wall*>(glfwGetWindowUserPointer(window));
+
+    if(!self) return;
+
+    self->MousechKey(key,action,mods);
+}
+
+void wall::MousechKey(int key,int action,int mod){
+    if (key > 0) return;
+
+    if(action == GLFW_PRESS)
+    {
+        inpu->mouseButtons[key] = true;
+        actions->mouseButtonsch = true;
+    }
+    if(action == GLFW_RELEASE)
+    {
+        inpu->mouseButtons[key] = false;
+        actions->mouseButtonsch = false;
+    }
+}
+
+void wall::MousePos(GLFWwindow* window,double xpos,double ypos){
+    wall* self = static_cast<wall*>(glfwGetWindowUserPointer(window));
+
+    if(!self) return;
+
+    self->Onmousemove(xpos,ypos);
+}
+
+void wall::Onmousemove(double xpos,double ypos){
     
 }
 wall::~wall() {}
