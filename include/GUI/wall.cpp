@@ -52,7 +52,12 @@ std::string wall::create(int X = 800, int Y = 600,std::string names = "ALTCORE")
 
 std::string wall::Setinput(){
     glfwSetWindowUserPointer(window,this);
-    glfwSet
+    glfwSetKeyCallback(window,Keydown);
+    glfwSetMouseButtonCallback(window,MouseKey);
+    glfwSetCursorPosCallback(window,MousePos);
+    glfwSetScrollCallback(window,MouseScrl);
+    glfwSetWindowCloseCallback(window,Onclose);
+    glfwSetFramebufferSizeCallback(window,Rezise)
 }
 wall::~wall() {}
 
