@@ -50,6 +50,10 @@ std::string wall::create(int X = 800, int Y = 600,std::string names = "ALTCORE")
     return resp;
 }
 
+std::string wall::Setinput(){
+    glfwSetWindowUserPointer(window,this);
+    glfwSet
+}
 wall::~wall() {}
 
 
