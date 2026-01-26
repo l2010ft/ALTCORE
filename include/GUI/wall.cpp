@@ -57,7 +57,7 @@ std::string wall::Setinput(){
     glfwSetCursorPosCallback(window,MousePos);
     glfwSetScrollCallback(window,MouseScrl);
     glfwSetWindowCloseCallback(window,Onclose);
-    glfwSetFramebufferSizeCallback(window,Rezise)
+    glfwSetFramebufferSizeCallback(window,Rezise);
 }
 wall::~wall() {}
 
