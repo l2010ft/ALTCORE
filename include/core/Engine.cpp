@@ -15,7 +15,7 @@ void engine::enginestart(int type){
             try
             {
                 std::string Resp;
-                wall gui(0,L);
+                wall gui(0);
                 Resp = gui.create();
 
                 L.info(Resp);
@@ -31,7 +31,6 @@ void engine::enginestart(int type){
 
             try
             {
-                wall gui(1,L);
             }
             catch(const std::exception& e)
             {

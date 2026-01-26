@@ -1,6 +1,6 @@
 #include <string>
 #include <memory>
-#include "log/log.h"
+#include <GLFW/glfw3.h>
 class wall
 {
 private:
@@ -11,6 +11,6 @@ private:
 public:
     wall(int Api);
     std::string create(int X = 800,int Y = 600,std::string names = "ALTCORE");
-
+    
     ~wall();
 };
