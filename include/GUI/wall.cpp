@@ -10,6 +10,8 @@ struct wall::wallP
     std::string name;
     int X;
     int Y;
+    bool LIMIT_WALL;
+    bool Minimized;
 };
 struct wall::Inputs
 {
@@ -17,6 +19,7 @@ struct wall::Inputs
     bool mouseButtons[GLFW_MOUSE_BUTTON_LAST + 1]{};
     double mouseX, mouseY;
     double scrollX, scrollY;
+    double deltaX,deltaY;
 };
 
 struct wall::action
@@ -44,7 +47,7 @@ wall::wall(int Api)
     {
         glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
     }
-
+    data ->Minimized = false;
     data -> api = Api;
 }
 
@@ -72,7 +75,7 @@ std::string wall::Setinput(){
     glfwSetScrollCallback(window,MouseScrl);
     glfwSetWindowCloseCallback(window,Onclose);
     glfwSetFramebufferSizeCallback(window,Rezise);
-
+    glfwSetWindowIconifyCallback(window,Minimized);
     return std::string("Callbacks seteadas");
 }
 void wall::Keydown(GLFWwindow* window,int key,int scancode,int action,int mods){
@@ -129,8 +132,30 @@ void wall::MousePos(GLFWwindow* window,double xpos,double ypos){
     self->Onmousemove(xpos,ypos);
 }
 
-void wall::Onmousemove(double xpos,double ypos){
-    
+void wall::Onmousemove(double xpos, double ypos)
+{
+    if (data->Minimized)
+        return;
+
+    if (data->LIMIT_WALL)
+    {
+        // Modo cursor libre (menús, editor, etc)
+        inpu->mouseX = xpos;
+        inpu->mouseY = ypos;
+        inpu->deltaX = 0.0;
+        inpu->deltaY = 0.0;
+    }
+    else
+    {
+        // Modo FPS (cursor bloqueado)
+        inpu->deltaX = xpos - inpu->mouseX;
+        inpu->deltaY = inpu->mouseY - ypos; // eje Y invertido
+
+        inpu->mouseX = xpos;
+        inpu->mouseY = ypos;
+    }
+
+    actions->mouseMoved = true;
 }
 wall::~wall() {}
 
