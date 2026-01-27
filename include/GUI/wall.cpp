@@ -157,6 +157,10 @@ void wall::Onmousemove(double xpos, double ypos)
 
     actions->mouseMoved = true;
 }
+
+void wall::MouseScrl(GLFWwindow* window,double xoffset,double yoffset){
+    
+}
 wall::~wall() {}
 
 

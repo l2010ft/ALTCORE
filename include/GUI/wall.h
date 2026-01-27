@@ -22,6 +22,7 @@ private:
     void KeyAction(int key,int action,int mod);
     void MousechKey(int key,int action,int mod);
     void Onmousemove(double xpos,double ypos);
+    void Mousescrl(double xoffset,double yoffset);
 public:
     wall(int Api);
     std::string create(int X = 800,int Y = 600,std::string names = "ALTCORE");
