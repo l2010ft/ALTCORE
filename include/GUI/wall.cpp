@@ -159,7 +159,21 @@ void wall::Onmousemove(double xpos, double ypos)
 }
 
 void wall::MouseScrl(GLFWwindow* window,double xoffset,double yoffset){
-    
+    wall* self = static_cast<wall*>(glfwGetWindowUserPointer(window));
+
+    if(!self) return;
+
+    self -> Mousescrl(xoffset,yoffset);
+}
+
+void wall::Mousescrl(double xoffset,double yoffset){
+    inpu->scrollX += xoffset;
+    inpu->scrollY += yoffset;
+    actions->scrolled = true;
+}
+
+void wall::Onclose(GLFWwindow* window){
+    glfwSetWindowShouldClose(window, GLFW_TRUE);
 }
 wall::~wall() {}
 
