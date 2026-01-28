@@ -33,6 +33,7 @@ struct wall::action
 wall::wall(int Api)
 : data(std::unique_ptr<wallP>()) , inpu(std::unique_ptr<Inputs>()), actions(std::unique_ptr<action>())
 {
+    glfwInit();
     if (!glfwInit)
     {
         throw std::runtime_error("No se pudo iniciar GLFW..."); 
