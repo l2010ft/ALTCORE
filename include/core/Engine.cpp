@@ -1,4 +1,5 @@
 #include "Engine.h"
+#include "config.h"
 #include "log/log.h"
 #include "GUI/wall.h"
 #include <GLFW/glfw3.h>
@@ -7,9 +8,9 @@
 
 engine::engine() {}
 
-void engine::enginestart(int type){
+void engine::enginestart(API type){
     L.info(std::string("Iniciando motor"));
-        if (type == 0)
+        if (type == API::Vulkan)
         {
             L.info(std::string("Iniciando con vulkan..."));
             try

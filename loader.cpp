@@ -1,5 +1,6 @@
 #include <vulkan/vulkan.h>
-#include <core/Engine.h>
+#include "core/Engine.h"
+#include "core/config.h"
 
 bool Vulkancheck();
 
@@ -7,10 +8,10 @@ bool Vulkancheck();
 int main(){
     engine E;
     if (Vulkancheck()){
-        E.enginestart(0);
+        E.enginestart(API::Vulkan);
         return 1;
     }else{
-        E.enginestart(1);
+        E.enginestart(API::OpenGL);
         return 1;
     }
 }

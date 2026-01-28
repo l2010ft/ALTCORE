@@ -1,12 +1,12 @@
 #include "log/log.h"
-
+#include "config.h"
 class engine
 {
 private:
     log L;
 public:
     engine();
-    void enginestart(int type);
+    void enginestart(API type);
     ~engine();
 
     class make
