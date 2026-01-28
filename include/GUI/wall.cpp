@@ -38,12 +38,12 @@ wall::wall(int Api)
         throw std::runtime_error("No se pudo iniciar GLFW..."); 
     }
         
-    if (Api == 1)
+    if (Api == 1) // Opengl
     {
         glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR,3);
         glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR,3);
         glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE); 
-    }else if (Api == 0)
+    }else if (Api == 0) // Vulkan
     {
         glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
     }
@@ -63,6 +63,11 @@ std::string wall::create(int X = 800, int Y = 600,std::string names = "ALTCORE")
         glfwTerminate();
         throw std::runtime_error("La ventana no se inicio correctamente");
     }
+    if(data ->api == 0)
+    {
+        
+    }
+
     std::string resp = "Ventana Iniciada API: " +std::string(data->api == 0 ? "Vulkan" : "OpenGL") +" X:" + std::to_string(data->X) +" Y:" + std::to_string(data->Y) +" con el nombre:" + data->name;
     return resp;
 }
@@ -174,6 +179,21 @@ void wall::Mousescrl(double xoffset,double yoffset){
 
 void wall::Onclose(GLFWwindow* window){
     glfwSetWindowShouldClose(window, GLFW_TRUE);
+}
+
+void wall::Rezise(GLFWwindow* window,int width,int heigth){
+    wall* self = static_cast<wall*>(glfwGetWindowUserPointer(window));
+
+    if(!self) return;
+
+    self ->Resizeact(width,heigth);
+}
+
+void wall::Resizeact(int width,int heigth){
+    if(data->api == 0)
+    {
+
+    }
 }
 wall::~wall() {}
 
