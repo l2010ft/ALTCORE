@@ -1,6 +1,7 @@
 #include <string>
 #include <memory>
 #include <GLFW/glfw3.h>
+#include "core/config.h"
 class wall
 {
 private:
@@ -25,7 +26,7 @@ private:
     void Mousescrl(double xoffset,double yoffset);
     void Resizeact(int width,int heigth);
 public:
-    wall(int Api);
+    wall(API Api);
     std::string create(int X = 800,int Y = 600,std::string names = "ALTCORE");
     std::string Setinput();
     std::string update();

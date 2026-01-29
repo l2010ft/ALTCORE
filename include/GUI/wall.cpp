@@ -3,10 +3,11 @@
 #include <vulkan/vulkan.h>
 #include <string>
 #include "wall.h"
+#include "core/config.h"
 
 struct wall::wallP
 {
-    int api;
+    API api;
     std::string name;
     int X;
     int Y;
@@ -30,7 +31,7 @@ struct wall::action
     bool scrolled = false; 
 };
 
-wall::wall(int Api)
+wall::wall(API Api)
 : data(std::unique_ptr<wallP>()) , inpu(std::unique_ptr<Inputs>()), actions(std::unique_ptr<action>())
 {
     glfwInit();
@@ -39,12 +40,12 @@ wall::wall(int Api)
         throw std::runtime_error("No se pudo iniciar GLFW..."); 
     }
         
-    if (Api == 1) // Opengl
+    if (Api == API::OpenGL) // Opengl
     {
         glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR,3);
         glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR,3);
         glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE); 
-    }else if (Api == 0) // Vulkan
+    }else if (Api == API::Vulkan) // Vulkan
     {
         glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
     }
@@ -64,12 +65,12 @@ std::string wall::create(int X = 800, int Y = 600,std::string names = "ALTCORE")
         glfwTerminate();
         throw std::runtime_error("La ventana no se inicio correctamente");
     }
-    if(data ->api == 0)
+    if(data ->api == API::Vulkan)
     {
         
     }
 
-    std::string resp = "Ventana Iniciada API: " +std::string(data->api == 0 ? "Vulkan" : "OpenGL") +" X:" + std::to_string(data->X) +" Y:" + std::to_string(data->Y) +" con el nombre:" + data->name;
+    std::string resp = "Ventana Iniciada API: " +std::string(data->api == API::Vulkan ? "Vulkan" : "OpenGL") +" X:" + std::to_string(data->X) +" Y:" + std::to_string(data->Y) +" con el nombre:" + data->name;
     return resp;
 }
 
@@ -191,7 +192,7 @@ void wall::Rezise(GLFWwindow* window,int width,int heigth){
 }
 
 void wall::Resizeact(int width,int heigth){
-    if(data->api == 0)
+    if(data->api == API::Vulkan)
     {
 
     }
