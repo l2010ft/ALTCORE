@@ -2,8 +2,8 @@
 #include <GLFW/glfw3.h>
 #include <vulkan/vulkan.h>
 #include <string>
-#include "core/config.h"
 #include <memory>
+#include "core/config.h"
 #include "wall.h"
 #include "renders/render.h"
 #include "Opengl/wallGL.h"
@@ -74,8 +74,13 @@ std::string wall::create(int X = 800, int Y = 600,std::string names = "ALTCORE")
     {
         
     } else {
+        glfwMakeContextCurrent(window);
         render = std::make_unique<DrawGL>();
+
+        render -> init(window,X,Y);
     }
+    data -> X = X;
+    data -> Y = Y;
 
     std::string resp = "Ventana Iniciada API: " +std::string(data->api == API::Vulkan ? "Vulkan" : "OpenGL") +" X:" + std::to_string(data->X) +" Y:" + std::to_string(data->Y) +" con el nombre:" + data->name;
     return resp;
