@@ -1,12 +1,12 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include "renders/render.h"
-class DrawGL : public rendered
+class DrawGL : public Render
 {
 private:
 
 public:
-  void init() override;
+  void init(GLFWwindow* window) override;
   void beginframe() override;
   void draw() override;
   void endframe() override;

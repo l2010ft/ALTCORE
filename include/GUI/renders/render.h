@@ -1,11 +1,11 @@
 #pragma once
-
-class rendered
+#include <GLFW/glfw3.h>
+class Render
 {
 public:
-    virtual ~rendered() = default;
+    virtual ~Render() = default;
 
-    virtual void init() = 0;
+    virtual void init(GLFWwindow* window) = 0;
     virtual void beginframe() = 0;
     virtual void draw() = 0;
     virtual void endframe() = 0;

@@ -2,9 +2,12 @@
 #include <GLFW/glfw3.h>
 #include <vulkan/vulkan.h>
 #include <string>
-#include "wall.h"
 #include "core/config.h"
-
+#include <memory>
+#include "wall.h"
+#include "renders/render.h"
+#include "Opengl/wallGL.h"
+#include "Vulkan/wullkan.h"
 struct wall::wallP
 {
     API api;
@@ -32,10 +35,10 @@ struct wall::action
 };
 
 wall::wall(API Api)
-: data(std::unique_ptr<wallP>()) , inpu(std::unique_ptr<Inputs>()), actions(std::unique_ptr<action>())
+: data(std::make_unique<wallP>()) , inpu(std::make_unique<Inputs>()), 
+actions(std::make_unique<action>())
 {
-    glfwInit();
-    if (!glfwInit)
+    if (!glfwInit())
     {
         throw std::runtime_error("No se pudo iniciar GLFW..."); 
     }
@@ -48,6 +51,8 @@ wall::wall(API Api)
     }else if (Api == API::Vulkan) // Vulkan
     {
         glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
+
+        // Agregar el unique de vulkan :3
     }
     data ->Minimized = false;
     data -> api = Api;
@@ -68,6 +73,8 @@ std::string wall::create(int X = 800, int Y = 600,std::string names = "ALTCORE")
     if(data ->api == API::Vulkan)
     {
         
+    } else {
+        render = std::make_unique<DrawGL>();
     }
 
     std::string resp = "Ventana Iniciada API: " +std::string(data->api == API::Vulkan ? "Vulkan" : "OpenGL") +" X:" + std::to_string(data->X) +" Y:" + std::to_string(data->Y) +" con el nombre:" + data->name;
@@ -194,6 +201,8 @@ void wall::Rezise(GLFWwindow* window,int width,int heigth){
 void wall::Resizeact(int width,int heigth){
     if(data->api == API::Vulkan)
     {
+
+    }else {
 
     }
 }

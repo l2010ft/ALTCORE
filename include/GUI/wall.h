@@ -2,6 +2,7 @@
 #include <memory>
 #include <GLFW/glfw3.h>
 #include "core/config.h"
+#include "renders/render.h"
 class wall
 {
 private:
@@ -12,6 +13,7 @@ private:
     std::unique_ptr<action> actions;
     std::unique_ptr<Inputs> inpu;
     std::unique_ptr<wallP> data;
+    std::unique_ptr<Render> render;
     GLFWwindow* window;
     static void Keydown(GLFWwindow* window,int key,int scancode,int action,int mods);
     static void MouseKey(GLFWwindow* window,int key,int action,int mods);
