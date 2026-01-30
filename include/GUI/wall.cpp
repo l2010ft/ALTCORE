@@ -75,9 +75,8 @@ std::string wall::create(int X = 800, int Y = 600,std::string names = "ALTCORE")
         
     } else {
         glfwMakeContextCurrent(window);
-        render = std::make_unique<DrawGL>();
-
-        render -> init(window,X,Y);
+        render = std::make_unique<DrawGL>(window);
+        render -> init(X,Y);
     }
     data -> X = X;
     data -> Y = Y;

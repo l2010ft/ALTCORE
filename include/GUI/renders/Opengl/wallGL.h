@@ -6,14 +6,20 @@ class DrawGL : public Render
 {
 private:
   struct wallGLP;
+  struct renderData;
   
   std::unique_ptr<wallGLP> data;
-  void Start();
+  std::unique_ptr<renderData> renderdat;
+
+  GLuint VAO = 0;
+  GLuint VBO = 0;
 public:
-  void init(GLFWwindow* window,int X,int Y) override;
+  DrawGL(GLFWwindow* window);
+  void init(int X,int Y) override;
   void beginframe() override;
   void draw() override;
   void endframe() override;
 
   void rezise(int width,int heigth) = 0;
+  ~DrawGL() override;
 };

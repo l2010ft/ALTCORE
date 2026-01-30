@@ -5,7 +5,7 @@ class Render
 public:
     virtual ~Render() = default;
 
-    virtual void init(GLFWwindow* window,int X,int Y) = 0;
+    virtual void init(int X,int Y) = 0;
     virtual void beginframe() = 0;
     virtual void draw() = 0;
     virtual void endframe() = 0;
