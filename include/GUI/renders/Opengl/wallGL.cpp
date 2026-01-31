@@ -33,3 +33,26 @@ void DrawGL::init(int X,int Y)
     data -> y = Y;
 }
 
+void DrawGL::CreateBuffers(float* vertices, size_t vertSize,unsigned int* indices, size_t indexSize){
+    glGenVertexArrays(1,&renderdat -> VAO);
+    glGenBuffers(1,&renderdat -> VBO);
+    glGenBuffers(1,&renderdat -> EBO);
+
+    glBindVertexArray(renderdat -> VAO);
+
+    // El VAO we :3
+    glBindBuffer(GL_ARRAY_BUFFER, renderdat ->VAO);
+    glBufferData(GL_ARRAY_BUFFER,vertSize,vertices,GL_STATIC_DRAW);
+    
+    // EL EBO
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, renderdat -> EBO);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, indexSize, indices,GL_STATIC_DRAW);
+    renderdat -> indexCount = indexSize / sizeof(unsigned int);
+
+    glVertexAttribPointer(0,3, GL_FLOAT,GL_FALSE, 6 * sizeof(float), (void*) 0);
+    glEnableVertexAttribArray(0);
+
+    
+
+
+}

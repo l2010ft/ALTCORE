@@ -13,6 +13,9 @@ private:
 
   GLuint VAO = 0;
   GLuint VBO = 0;
+
+  void CreateBuffers(float* vertices, size_t vertSize,unsigned int* indices, size_t indexSize);
+  GLuint createprogram();
 public:
   DrawGL(GLFWwindow* window);
   void init(int X,int Y) override;
