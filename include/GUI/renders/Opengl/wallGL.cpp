@@ -59,5 +59,54 @@ void DrawGL::CreateBuffers(float* vertices, size_t vertSize,unsigned int* indice
 }
 
 GLuint DrawGL::createprogram(){
+    const char* vertexsrc = R"(
+    #version 330 core
+    layout (location = 0) in vec3 aPos;
+    layout (location = 1) in vec3 aColor;
+
+    uniform mat4 MVP;
+    out vec3 vColor;
+
+    void main()
+    {
+    vColor = aColor;
+    gl_Position = MVP * vec4(aPos, 1.0);
+    }
+    )";
+    const char* fragmentsrc = R"(
+    #version 330 core
+    in vec3 vColor;
+    out vec4 FragColor;
+
+    void main()
+    {
+    FragColor = vec4(vColor, 1.0);
+    }
+    )";
+
+    //Creacion del vertex shader y el fragment shader
+    GLuint vs = glCreateShader(GL_VERTEX_SHADER);
+    glShaderSource(vs,1,&vertexsrc,nullptr);
+    glCompileShader(vs);
+    
+    GLuint fs = glCreateShader(GL_FRAGMENT_SHADER);
+    glShaderSource(fs,1,&fragmentsrc,nullptr);
+    glCompileShader(fs);
+
+    //Verificar los cambios
+    int sucess;
+    char infolog[1024];
+    glGetShaderiv(vs,GL_COMPILE_STATUS,&sucess);
+    if (!sucess)
+    {
+        glGetShaderInfoLog(vs,1024,nullptr,infolog);
+        throw std::runtime_error(infolog);
+    }
+
+    glGetShaderiv(fs,GL_COMPILE_STATUS,&sucess);
+    if (!sucess)
+    {
+        
+    }
     
 }
