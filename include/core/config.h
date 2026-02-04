@@ -1,4 +1,5 @@
 #pragma once
+#include <cstdint>
 
 enum class API {
     OpenGL,
@@ -6,7 +7,9 @@ enum class API {
 };
 
 enum class renderact {
-    On_render,
     render_success,
     render_fail
 };
+
+using MeshHandle = uint32_t;
+using TextureHandle = uint32_t;

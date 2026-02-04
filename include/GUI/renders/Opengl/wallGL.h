@@ -1,7 +1,9 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <memory>
+#include <unordered_map>
 #include "renders/render.h"
+#include "core/config.h"
 class DrawGL : public Render
 {
 private:
@@ -9,16 +11,19 @@ private:
   struct renderData;
   
   std::unique_ptr<wallGLP> data;
-  std::unique_ptr<renderData> renderdat;
+
+  MeshHandle nextId = 1;
+  std::unordered_map<MeshHandle,renderData> RenderMeshes;
 
   GLuint VAO = 0;
   GLuint VBO = 0;
 
-  void CreateBuffers(float* vertices, size_t vertSize,unsigned int* indices, size_t indexSize);
+  void CreateBuffers(renderData* render,float* vertices, size_t vertSize,unsigned int* indices, size_t indexSize);
   GLuint createprogram();
 public:
   DrawGL(GLFWwindow* window);
   void init(int X,int Y) override;
+  renderact chargeSTL(const float* vertizes,size_t vertexSize,unsigned int indices,size_t indexCout) override;
   void beginframe() override;
   void draw() override;
   void endframe() override;

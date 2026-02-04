@@ -16,7 +16,7 @@ struct DrawGL::renderData{
     size_t indexCount = 0;
 };
 DrawGL::DrawGL(GLFWwindow* window)
-: data(std::make_unique<wallGLP>()), renderdat(std::make_unique<renderData>())
+: data(std::make_unique<wallGLP>())
 {
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
         throw std::runtime_error("Failed to initialize GLAD");
@@ -33,26 +33,31 @@ void DrawGL::init(int X,int Y)
     data -> y = Y;
 }
 
-void DrawGL::CreateBuffers(float* vertices, size_t vertSize,unsigned int* indices, size_t indexSize){
-    glGenVertexArrays(1,&renderdat -> VAO);
-    glGenBuffers(1,&renderdat -> VBO);
-    glGenBuffers(1,&renderdat -> EBO);
+renderact chargeSTL(const float* vertizes,size_t vertexSize,unsigned int indices,size_t indexCout){
+    
+}
 
-    glBindVertexArray(renderdat -> VAO);
+
+void DrawGL::CreateBuffers(renderData* render,float* vertices, size_t vertSize,unsigned int* indices, size_t indexSize){
+    glGenVertexArrays(1,&render->VAO);
+    glGenBuffers(1,&render -> VBO);
+    glGenBuffers(1,&render -> EBO);
+
+    glBindVertexArray(render -> VAO);
 
     // El VAO we :3
-    glBindBuffer(GL_ARRAY_BUFFER, renderdat ->VAO);
+    glBindBuffer(GL_ARRAY_BUFFER, render ->VAO);
     glBufferData(GL_ARRAY_BUFFER,vertSize,vertices,GL_STATIC_DRAW);
     
     // EL EBO
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, renderdat -> EBO);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, render -> EBO);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, indexSize, indices,GL_STATIC_DRAW);
-    renderdat -> indexCount = indexSize / sizeof(unsigned int);
+    render -> indexCount = indexSize / sizeof(unsigned int);
 
     glVertexAttribPointer(0,3, GL_FLOAT,GL_FALSE, 6 * sizeof(float), (void*) 0);
     glEnableVertexAttribArray(0);
 
-    glVertexAttribPointer(0,3,GL_FLOAT,GL_FALSE, 6 * sizeof(float), (void*) (3 * sizeof(float)));
+    glVertexAttribPointer(1,3,GL_FLOAT,GL_FALSE, 6 * sizeof(float), (void*) (3 * sizeof(float)));
     glEnableVertexAttribArray(1);
 
     glBindVertexArray(0);
@@ -106,7 +111,28 @@ GLuint DrawGL::createprogram(){
     glGetShaderiv(fs,GL_COMPILE_STATUS,&sucess);
     if (!sucess)
     {
-        
+        glGetShaderInfoLog(fs,1024,nullptr,infolog);
+        throw std::runtime_error(infolog);
+    }
+
+    //crear el shader program
+    GLuint program = glCreateProgram();
+    glAttachShader(program,vs);
+    glAttachShader(program,fs);
+    glLinkProgram(program);
+
+    glGetProgramiv(program,GL_LINK_STATUS,&sucess);
+    if (!sucess)
+    {
+        glGetProgramInfoLog(program,1024,nullptr,infolog);
+        throw std::runtime_error(infolog);
     }
     
+    //eliminamos los shaders poque ya estan linkeados al programa
+    
+    glDeleteShader(vs);
+    glDeleteShader(fs);
+
+    //retornamos el program shader
+    return program;
 }
