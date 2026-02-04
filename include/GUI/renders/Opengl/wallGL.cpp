@@ -33,12 +33,18 @@ void DrawGL::init(int X,int Y)
     data -> y = Y;
 }
 
-renderact chargeSTL(const float* vertizes,size_t vertexSize,unsigned int indices,size_t indexCout){
-    
+renderact DrawGL::chargeSTL(const float* vertizes,size_t vertexSize,const unsigned int* indices,size_t indexCout){
+    renderData rd;
+    //Creo buffers VAO,VBO,EBO
+    CreateBuffers(&rd,vertizes,vertexSize,indices,indexCout * sizeof(unsigned int));
+    //Creo su shader program
+    MeshHandle id = nextId++;
+    RenderMeshes[id] = std::move(rd);
+    return renderact::render_success;
 }
 
 
-void DrawGL::CreateBuffers(renderData* render,float* vertices, size_t vertSize,unsigned int* indices, size_t indexSize){
+void DrawGL::CreateBuffers(renderData* render,const float* vertices, size_t vertSize,const unsigned int* indices, size_t indexSize){
     glGenVertexArrays(1,&render->VAO);
     glGenBuffers(1,&render -> VBO);
     glGenBuffers(1,&render -> EBO);
@@ -46,7 +52,7 @@ void DrawGL::CreateBuffers(renderData* render,float* vertices, size_t vertSize,u
     glBindVertexArray(render -> VAO);
 
     // El VAO we :3
-    glBindBuffer(GL_ARRAY_BUFFER, render ->VAO);
+    glBindBuffer(GL_ARRAY_BUFFER, render ->VBO);
     glBufferData(GL_ARRAY_BUFFER,vertSize,vertices,GL_STATIC_DRAW);
     
     // EL EBO

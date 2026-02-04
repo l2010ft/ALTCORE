@@ -18,12 +18,12 @@ private:
   GLuint VAO = 0;
   GLuint VBO = 0;
 
-  void CreateBuffers(renderData* render,float* vertices, size_t vertSize,unsigned int* indices, size_t indexSize);
+  void CreateBuffers(renderData* render,const float* vertices, size_t vertSize,const unsigned int* indices, size_t indexSize);
   GLuint createprogram();
 public:
   DrawGL(GLFWwindow* window);
   void init(int X,int Y) override;
-  renderact chargeSTL(const float* vertizes,size_t vertexSize,unsigned int indices,size_t indexCout) override;
+  renderact chargeSTL(const float* vertizes,size_t vertexSize,const unsigned int* indices,size_t indexCout) override;
   void beginframe() override;
   void draw() override;
   void endframe() override;
