@@ -9,11 +9,16 @@ class DrawGL : public Render
 private:
   struct wallGLP;
   struct renderData;
+  struct shader;
+  
   
   std::unique_ptr<wallGLP> data;
 
   MeshHandle nextId = 1;
   std::unordered_map<MeshHandle,renderData> RenderMeshes;
+
+  ShaderHandle nextid = 1;
+  std::unordered_map<ShaderHandle,shader> Shaders;
 
   GLuint VAO = 0;
   GLuint VBO = 0;
@@ -23,9 +28,9 @@ private:
 public:
   DrawGL(GLFWwindow* window);
   void init(int X,int Y) override;
-  renderact chargeSTL(const float* vertizes,size_t vertexSize,const unsigned int* indices,size_t indexCout) override;
-  void beginframe() override;
-  void draw() override;
+  renderact chargeSTL(const float* vertizes,size_t vertexSize,const unsigned int* indices,size_t indexCout,int model) override;
+  void beginframe(const matriz& View,const matriz& projection) override;
+  Action draw(const matriz& model,int idmodel,int shader = 1) override;
   void endframe() override;
 
   void rezise(int width,int heigth) = 0;

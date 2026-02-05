@@ -6,6 +6,7 @@
 struct DrawGL::wallGLP{
     GLFWwindow* window;
     int x,y;
+    matriz View,Projection;
 };
 
 struct DrawGL::renderData{
@@ -14,6 +15,12 @@ struct DrawGL::renderData{
     GLuint EBO = 0;
     GLuint shaderprogram = 0;
     size_t indexCount = 0;
+    int modelid;
+};
+
+struct DrawGL::shader {
+    GLuint ShaderProgram;
+    int identifiquer;
 };
 DrawGL::DrawGL(GLFWwindow* window)
 : data(std::make_unique<wallGLP>())
@@ -33,10 +40,13 @@ void DrawGL::init(int X,int Y)
     data -> y = Y;
 }
 
-renderact DrawGL::chargeSTL(const float* vertizes,size_t vertexSize,const unsigned int* indices,size_t indexCout){
+renderact DrawGL::chargeSTL(const float* vertizes,size_t vertexSize,const unsigned int* indices,size_t indexCout,int model){
     renderData rd;
     //Creo buffers VAO,VBO,EBO
     CreateBuffers(&rd,vertizes,vertexSize,indices,indexCout * sizeof(unsigned int));
+
+    //creamos un id interno para el model
+    rd.modelid = model;
     //Creo su shader program
     MeshHandle id = nextId++;
     RenderMeshes[id] = std::move(rd);
@@ -141,4 +151,12 @@ GLuint DrawGL::createprogram(){
 
     //retornamos el program shader
     return program;
+}
+
+void DrawGL::beginframe(const matriz& View,const matriz& projection) {
+    data -> View = View;
+    data -> Projection = projection;
+}
+
+Action DrawGL::draw(const matriz& model,int idmodel,int shader = 1) {
 }
