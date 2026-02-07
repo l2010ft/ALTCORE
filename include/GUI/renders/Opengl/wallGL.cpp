@@ -159,4 +159,5 @@ void DrawGL::beginframe(const matriz& View,const matriz& projection) {
 }
 
 Action DrawGL::draw(const matriz& model,int idmodel,int shader = 1) {
+    
 }

@@ -3,6 +3,8 @@
 #glfw
 /modules/GUI/glfw-3.4/**
 
+#glm
+/modules/EXTRMOD/glm/**
 #src glfw
 !/modules/GUI/glfw-3.4/
 !/modules/GUI/glfw-3.4/src/
@@ -12,5 +14,8 @@
 !/modules/API/Vulkan/
 !/modules/API/Vulkan/Source/
 !/modules/API/Vulkan/Source/**
+
+#src de glm
+
 
 /.vscode/
