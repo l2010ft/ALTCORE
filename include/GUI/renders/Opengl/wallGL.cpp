@@ -2,6 +2,7 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <stdexcept>
+#include <glm/gtc/type_ptr.hpp>
 
 struct DrawGL::wallGLP{
     GLFWwindow* window;
@@ -159,5 +160,12 @@ void DrawGL::beginframe(const glm::mat4& View,const glm::mat4& projection) {
 }
 
 Action DrawGL::draw(const glm::mat4& model,int idmodel,int shader = 1) {
+    GLuint program = Shaders[shader].ShaderProgram;
+    
+    glUseProgram(program);
 
+    GLuint MVPl = glGetUniformLocation(program,"MVP");
+
+    glm::mat4 MPV = data -> Projection * data -> View * model;
+    glUniformMatrix4fv(MVPl,1,GL_FALSE,glm::value_ptr(MPV));
 }
