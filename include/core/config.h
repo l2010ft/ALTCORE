@@ -16,10 +16,6 @@ enum class Action {
     drawFail
 };
 
-struct matriz
-{
-    float mat4[16];
-};
 
 
 using MeshHandle = uint32_t;

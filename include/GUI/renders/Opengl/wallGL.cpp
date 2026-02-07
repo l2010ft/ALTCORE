@@ -6,7 +6,7 @@
 struct DrawGL::wallGLP{
     GLFWwindow* window;
     int x,y;
-    matriz View,Projection;
+    glm::mat4 View,Projection;
 };
 
 struct DrawGL::renderData{
@@ -153,11 +153,11 @@ GLuint DrawGL::createprogram(){
     return program;
 }
 
-void DrawGL::beginframe(const matriz& View,const matriz& projection) {
+void DrawGL::beginframe(const glm::mat4& View,const glm::mat4& projection) {
     data -> View = View;
     data -> Projection = projection;
 }
 
-Action DrawGL::draw(const matriz& model,int idmodel,int shader = 1) {
-    
+Action DrawGL::draw(const glm::mat4& model,int idmodel,int shader = 1) {
+
 }

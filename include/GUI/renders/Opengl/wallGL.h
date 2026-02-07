@@ -1,5 +1,6 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
+#include <glm/glm.hpp>
 #include <memory>
 #include <unordered_map>
 #include "renders/render.h"
@@ -29,8 +30,8 @@ public:
   DrawGL(GLFWwindow* window);
   void init(int X,int Y) override;
   renderact chargeSTL(const float* vertizes,size_t vertexSize,const unsigned int* indices,size_t indexCout,int model) override;
-  void beginframe(const matriz& View,const matriz& projection) override;
-  Action draw(const matriz& model,int idmodel,int shader = 1) override;
+  void beginframe(const glm::mat4& View,const glm::mat4& projection) override;
+  Action draw(const glm::mat4& model,int idmodel,int shader = 1) override;
   void endframe() override;
 
   void rezise(int width,int heigth) = 0;
