@@ -16,6 +16,8 @@
 !/modules/API/Vulkan/Source/**
 
 #src de glm
-
+!/modules/EXTRMOD/glm/
+!/modules/EXTRMOD/glm/glm/
+!/modules/EXTRMOD/glm/glm/**
 
 /.vscode/
