@@ -3,7 +3,7 @@
 class engine
 {
 private:
-    log L;
+    logger L;
 public:
     engine();
     void enginestart(API type);

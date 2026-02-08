@@ -160,6 +160,7 @@ void DrawGL::beginframe(const glm::mat4& View,const glm::mat4& projection) {
 }
 
 Action DrawGL::draw(const glm::mat4& model,int idmodel,int shader = 1) {
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     GLuint program = Shaders[shader].ShaderProgram;
     
     glUseProgram(program);
@@ -168,4 +169,16 @@ Action DrawGL::draw(const glm::mat4& model,int idmodel,int shader = 1) {
 
     glm::mat4 MPV = data -> Projection * data -> View * model;
     glUniformMatrix4fv(MVPl,1,GL_FALSE,glm::value_ptr(MPV));
+
+    if (idmodel == 0 or idmodel == 1){
+        throw std::runtime_error("Modelos intocables...");
+    }
+
+    glBindVertexArray(RenderMeshes[idmodel].VAO);
+
+    glDrawArrays(GL_TRIANGLES,0,3);
+}
+
+void DrawGL::rezise(int width,int heigth) {
+    glViewport(0,0,width,heigth);
 }

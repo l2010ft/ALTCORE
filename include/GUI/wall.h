@@ -28,9 +28,17 @@ private:
     void Mousescrl(double xoffset,double yoffset);
     void Resizeact(int width,int heigth);
 public:
+    /**
+     * @brief Inicializa el GLFW
+     * 
+     * @param api La API que va a ocupar(vulkan,opengl) 
+     */
     wall(API Api);
+    //Crea la ventana
     std::string create(int X = 800,int Y = 600,std::string names = "ALTCORE");
+    // Inicializa las callbacks de inputs
     std::string Setinput();
+    //cambia al siguiente frame al igual que odtiene las callbacks de input
     std::string update();
     ~wall();
 };
