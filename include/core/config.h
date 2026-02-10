@@ -16,6 +16,11 @@ enum class Action {
     drawFail
 };
 
+enum class taskact {
+    taskfailed,
+    taskSucces,
+};
+
 
 
 using MeshHandle = uint32_t;
