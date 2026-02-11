@@ -8,9 +8,22 @@ class scheduler
 private:
 public:
     scheduler();
-
-    taskact threadPhisics();
-    taskact threadScript();
+    class Physics
+    {
+    private:
+        /* data */
+    public:
+        Physics(/* args */);
+        ~Physics();
+    };
+    class Scripts
+    {
+    private:
+        /* data */
+    public:
+        Scripts(/* args */);
+        ~Scripts();
+    };
 
     ~scheduler();
 };

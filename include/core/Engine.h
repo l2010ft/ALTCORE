@@ -1,18 +1,13 @@
 #include "log/log.h"
 #include "config.h"
+#include "GUI/wall.h"
 class engine
 {
 private:
     logger L;
+    wall gui;
 public:
-    engine();
-    void enginestart(API type);
+    engine(API type);
+    void enginestart();
     ~engine();
-
-    class make
-    {
-    private:
-        /* data */
-    public:
-    }; 
 };

@@ -6,12 +6,13 @@ bool Vulkancheck();
 
 
 int main(){
-    engine E;
     if (Vulkancheck()){
-        E.enginestart(API::Vulkan);
+        engine E(API::Vulkan);
+        E.enginestart();
         return 1;
     }else{
-        E.enginestart(API::OpenGL);
+        engine E(API::OpenGL);
+        E.enginestart();
         return 1;
     }
 }

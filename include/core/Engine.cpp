@@ -6,9 +6,7 @@
 #include <vulkan/vulkan.h>
 #include <stdexcept>
 
-engine::engine() {}
-
-void engine::enginestart(API type){
+engine::engine(API type) {
     L.info(std::string("Iniciando motor"));
     if (type == API::Vulkan)
         {
@@ -44,6 +42,9 @@ void engine::enginestart(API type){
             L.critical(std::string(e.what()));
         }
     }
+}
+
+void engine::enginestart(){
 }
 
 engine::~engine(){}
