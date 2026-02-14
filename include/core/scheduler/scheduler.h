@@ -3,6 +3,8 @@
 #include <mutex>
 #include <functional>
 #include <condition_variable>
+#include <glm/glm.hpp>
+#include <glm/glm/
 #include "core/config.h"
 
 class scheduler
@@ -11,24 +13,9 @@ private:
 public:
     scheduler();
 
-    taskact schedulerbind(tipethread type, std::function<void> fuction);
+    taskact schedulerbind(tipethread typeThread, std::function<void> fuction);
 
-    class Physics
-    {
-    private:
-        /* data */
-    public:
-        Physics(/* args */);
-        ~Physics();
-    };
-    class Scripts
-    {
-    private:
-        /* data */
-    public:
-        Scripts(/* args */);
-        ~Scripts();
-    };
+    fisicas PhysicsInterac(fisicasact tipact,glm::mat4& position,glm::mat4&
 
     ~scheduler();
 };

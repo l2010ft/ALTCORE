@@ -26,6 +26,18 @@ enum class tipethread {
     Scripts
 };
 
+enum class fisicas {
+    matsucces,
+    fail,
+    materror,
+};
+
+enum class fisicasact {
+    colision,
+    move,
+    trayectoria
+};
+
 
 
 using MeshHandle = uint32_t;
