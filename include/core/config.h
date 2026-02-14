@@ -21,6 +21,11 @@ enum class taskact {
     taskSucces,
 };
 
+enum class tipethread {
+    Physics,
+    Scripts
+};
+
 
 
 using MeshHandle = uint32_t;
