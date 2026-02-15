@@ -7,7 +7,8 @@ class fisicas
 private:
     /* data */
 public:
-    fisicas(/* args */);
+    fisicas();
+    fisicass chargmodel(modelColison* model);
     ~fisicas();
 };
 
@@ -15,12 +16,12 @@ public:
 struct transformfic
 {
     glm::vec3 position;
+    glm::vec3 scala;
     glm::quat rotation;
 };
 
 struct modelColison
 {
     fisicmodel model;
-    transformfic ubi;
-
+    transformfic trasnfom;
 };

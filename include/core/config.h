@@ -26,7 +26,7 @@ enum class tipethread {
     Scripts
 };
 
-enum class fisicas {
+enum class fisicass {
     matsucces,
     fail,
     materror,

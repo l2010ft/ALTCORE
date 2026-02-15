@@ -4,7 +4,7 @@
 #include <functional>
 #include <condition_variable>
 #include <glm/glm.hpp>
-#include <glm/glm/
+#include <glm/gtc/quaternion.hpp>
 #include "core/config.h"
 
 class scheduler
@@ -15,7 +15,7 @@ public:
 
     taskact schedulerbind(tipethread typeThread, std::function<void> fuction);
 
-    fisicas PhysicsInterac(fisicasact tipact,glm::mat4& position,glm::mat4&
+    fisicass PhysicsInterac(fisicasact tipact,glm::vec3 position,glm::quat rotation);
 
     ~scheduler();
 };
