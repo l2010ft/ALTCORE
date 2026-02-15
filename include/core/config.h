@@ -38,6 +38,13 @@ enum class fisicasact {
     trayectoria
 };
 
+enum class fisicmodel {
+    cube,
+    sphere,
+    rectangle,
+    pastilla
+};
+
 
 
 using MeshHandle = uint32_t;
