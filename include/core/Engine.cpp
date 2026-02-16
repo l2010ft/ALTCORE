@@ -9,22 +9,16 @@
 engine::engine(API type) {
     L.info(std::string("Iniciando motor"));
     if (type == API::Vulkan)
-        {
-            L.info(std::string("Iniciando con vulkan..."));
-            try
-            {
-                std::string Resp;
-                wall gui(API::Vulkan);
-                Resp = gui.create();
+    {
+        L.info(std::string("Iniciando con vulkan..."));
+        auto gui = creategui(API::Vulkan);
+        
+        if (gui) {
 
-                L.info(Resp);
-
-            }
-            catch(const std::exception& e)
-            {
-                L.critical(std::string(e.what()));
-            }
+        } else {
             
+        }
+
     }else{
         L.info(std::string("Iniciando con opengl..."));
 

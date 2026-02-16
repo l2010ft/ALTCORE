@@ -1,5 +1,6 @@
 #pragma once
 #include <cstdint>
+#include <string>
 
 enum class API {
     OpenGL,
@@ -46,6 +47,7 @@ enum class fisicmodel {
     rectangle,
     pastilla
 };
+
 
 
 
