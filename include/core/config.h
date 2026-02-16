@@ -35,7 +35,9 @@ enum class fisicass {
 enum class fisicasact {
     colision,
     move,
-    trayectoria
+    trayectoria,
+    rotaticion,
+    gravedad
 };
 
 enum class fisicmodel {

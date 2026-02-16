@@ -1,5 +1,7 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/quaternion.hpp>
+#include <Jolt/Jolt.h>
+#include <Jolt/Physics/PhysicsSystem.h>
 #include "core/config.h"
 
 class fisicas
@@ -7,8 +9,11 @@ class fisicas
 private:
     /* data */
 public:
-    fisicas();
+    fisicas(JPH::PhysicsSystem& physics);
     fisicass chargmodel(modelColison* model);
+
+    fisicasact move();
+
     ~fisicas();
 };
 
