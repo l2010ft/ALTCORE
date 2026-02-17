@@ -5,8 +5,17 @@
 #include <GLFW/glfw3.h>
 #include <vulkan/vulkan.h>
 #include <stdexcept>
+#include <memory>
 
-engine::engine(API type) {
+struct engine::datP
+{
+    wall* guis = nullptr;
+};
+
+
+
+
+engine::engine(API type) : data(std::make_unique<datP>()){
     L.info(std::string("Iniciando motor"));
     if (type == API::Vulkan)
     {
@@ -16,6 +25,7 @@ engine::engine(API type) {
         
         if (gui) {
             L.info(std::string("Render iniciado con Vulkan"));
+            data->guis = &gui;
         } else {
             L.error(resp);
             auto guires = creategui(API::OpenGL,resp);
