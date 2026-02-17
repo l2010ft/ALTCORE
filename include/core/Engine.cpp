@@ -11,29 +11,44 @@ engine::engine(API type) {
     if (type == API::Vulkan)
     {
         L.info(std::string("Iniciando con vulkan..."));
-        auto gui = creategui(API::Vulkan);
+        std::string resp;
+        auto gui = creategui(API::Vulkan,resp);
         
         if (gui) {
-
+            L.info(std::string("Render iniciado con Vulkan"));
         } else {
+            L.error(resp);
+            auto guires = creategui(API::OpenGL,resp);
+            L.info(std::string("Intentando cambiar a OpenGL"));
+            if (guires)
+            {
+                L.info(std::string("Cambiado correctamente a OpenGL"));
+            } else {
+                L.critical(resp);
+                // lugar de funcion de protocolo de panico :3
+            }
             
         }
-
     }else{
         L.info(std::string("Iniciando con opengl..."));
 
-        try
-        {
-            std::string Resp;
-            wall gui(API::OpenGL);
+        std::string resp;
+        auto gui = creategui(API::OpenGL,resp);
 
-            Resp = gui.create();
-
-            L.info(Resp);
-        }
-        catch(const std::exception& e)
-        {
-            L.critical(std::string(e.what()));
+        if (gui) {
+            L.info(std::string("Render iniciado con OpenGL"));
+        }else {
+            L.error(resp);
+            auto guires = creategui(API::Vulkan,resp);
+            L.info(std::string("Cambiando a Vulkan"));
+            if (guires)
+            {
+                L.info(std::string("Cambiando correctamente a Vulkan"));
+            } else {
+                L.critical(resp);
+                //funcion de protocolo de panico :3
+            }
+            
         }
     }
 }
