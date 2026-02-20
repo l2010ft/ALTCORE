@@ -9,7 +9,7 @@
 
 struct engine::datP
 {
-    wall* guis = nullptr;
+    std::unique_ptr<wall> guis = nullptr;
 };
 
 
@@ -25,7 +25,7 @@ engine::engine(API type) : data(std::make_unique<datP>()){
         
         if (gui) {
             L.info(std::string("Render iniciado con Vulkan"));
-            data->guis = &gui;
+            data->guis = std::move(gui);
         } else {
             L.error(resp);
             auto guires = creategui(API::OpenGL,resp);
@@ -33,6 +33,8 @@ engine::engine(API type) : data(std::make_unique<datP>()){
             if (guires)
             {
                 L.info(std::string("Cambiado correctamente a OpenGL"));
+
+                data->guis = std::move(guires);
             } else {
                 L.critical(resp);
                 // lugar de funcion de protocolo de panico :3
@@ -47,6 +49,8 @@ engine::engine(API type) : data(std::make_unique<datP>()){
 
         if (gui) {
             L.info(std::string("Render iniciado con OpenGL"));
+
+            data->guis = std::move(gui);
         }else {
             L.error(resp);
             auto guires = creategui(API::Vulkan,resp);
@@ -54,6 +58,7 @@ engine::engine(API type) : data(std::make_unique<datP>()){
             if (guires)
             {
                 L.info(std::string("Cambiando correctamente a Vulkan"));
+                data->guis = std::move(guires);
             } else {
                 L.critical(resp);
                 //funcion de protocolo de panico :3
@@ -64,6 +69,35 @@ engine::engine(API type) : data(std::make_unique<datP>()){
 }
 
 void engine::enginestart(){
+    L.info(std::string("Iniciando GLFW"));
+
+    
+}
+
+std::unique_ptr<wall> engine::creategui(API api,std::string& resp) {
+    try
+    {
+        auto ptr = std::make_unique<wall>();
+        resp = resp + std::string("[Wall Create]");
+        return ptr;
+    }
+    catch(const std::exception& e)
+    {
+        resp = resp + std::string("[Wall ERROR]:") + std::string(e.what());
+        return nullptr;
+    }
+}
+
+void engine::createwindow(int x = 800,int y = 600,std::string name = "ALTCORE",std::string& res) {
+    try
+    {
+        std::string resp = data->guis->create(x,y,name);
+        res = res + resp;
+    }
+    catch(const std::exception& e)
+    {
+        res = res + std::string(e.what());
+    }
 }
 
 engine::~engine(){}
