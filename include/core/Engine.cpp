@@ -71,7 +71,7 @@ engine::engine(API type) : data(std::make_unique<datP>()){
 void engine::enginestart(){
     L.info(std::string("Iniciando GLFW"));
 
-    
+    std::string res;
 }
 
 std::unique_ptr<wall> engine::creategui(API api,std::string& resp) {
