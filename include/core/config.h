@@ -48,6 +48,18 @@ enum class fisicmodel {
     pastilla
 };
 
+enum class script {
+    cargado,
+    proceso,
+    comunicacion,
+    data
+};
+struct resp1
+{
+    int id;
+    script tipo;
+    
+};
 
 
 

@@ -3,7 +3,7 @@ class make
 private:
     /* data */
 public:
-    make(int x = 800,int y = 500);
+    make(resp1* data);
     ~make();
 };
 
