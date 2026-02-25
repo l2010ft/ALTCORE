@@ -22,10 +22,6 @@ enum class taskact {
     taskSucces,
 };
 
-enum class tipethread {
-    Physics,
-    Scripts
-};
 
 enum class fisicass {
     matsucces,
@@ -51,18 +47,18 @@ enum class fisicmodel {
 enum class script {
     cargado,
     proceso,
-    comunicacion,
-    data
+    scheduler,
+    scriptload,
+    fisic,
+    data,
+    fail
 };
 struct resp1
 {
     int id;
     script tipo;
-    
+    std::string content;
 };
-
-
-
 using MeshHandle = uint32_t;
 using TextureHandle = uint32_t;
 using ShaderHandle = uint32_t;

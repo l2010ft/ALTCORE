@@ -10,12 +10,17 @@
 class scheduler
 {
 private:
+    struct chargue
+    {
+        std::queue<resp1> input;
+        std::queue<resp1> output;
+        std::mutex inputmu,outputmu;
+        std::condition_variable cvfuc;
+    };
+    
+    void Phisycs(chargue& physiccom);
+    void Scripts(chargue& scriptcom);
 public:
     scheduler();
-
-    taskact schedulerbind(tipethread typeThread, std::function<void> fuction);
-
-    fisicass PhysicsInterac(fisicasact tipact,glm::vec3 position,glm::quat rotation);
-
     ~scheduler();
 };
