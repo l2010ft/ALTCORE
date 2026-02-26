@@ -18,8 +18,8 @@ private:
         std::condition_variable cvfuc;
     };
     
-    void Phisycs(chargue& physiccom);
-    void Scripts(chargue& scriptcom);
+    static void Phisycs(chargue& physiccom);
+    static void Scripts(chargue& scriptcom);
 public:
     scheduler();
     ~scheduler();
