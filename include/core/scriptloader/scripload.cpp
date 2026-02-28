@@ -3,6 +3,6 @@
 
 extern make* maker = nullptr;
 
-make::make(){
+make::make(std::queue<resp1>& q,std::queue<resp1>& re2){
     
 }
