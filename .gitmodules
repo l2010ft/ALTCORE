@@ -1,3 +1,6 @@
 [submodule "modules/EXTRMOD/physics"]
 	path = modules/EXTRMOD/physics
 	url = https://github.com/jrouwe/JoltPhysics
+[submodule "modules/EXTRMOD/scriptapi"]
+	path = modules/EXTRMOD/scriptapi
+	url = https://github.com/pybind/pybind11
