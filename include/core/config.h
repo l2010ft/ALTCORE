@@ -59,6 +59,12 @@ struct resp1
     script tipo;
     std::string content;
 };
+
+struct fisicmodel_med
+{
+    float L,L2,R,A,A2;
+};
+
 using MeshHandle = uint32_t;
 using TextureHandle = uint32_t;
 using ShaderHandle = uint32_t;
