@@ -6,7 +6,7 @@
 #include <string>
 #include <filesystem>
 
-log::log() {
+logger::logger() {
     if (!std::filesystem::exists("logs")){
         std::filesystem::create_directory("logs");
     }
@@ -18,7 +18,7 @@ log::log() {
 }
 
 
-void log::registerent(const std::string& text,const int level){
+void logger::registerent(const std::string& text,const int level){
     std::ofstream Logfile("logs/log.txt",std::ios::app);
 
     auto now = std::chrono::system_clock::now();
@@ -48,19 +48,19 @@ void log::registerent(const std::string& text,const int level){
     Logfile.close();
 }
 
-void log::warn(const std::string& warns){
+void logger::warn(const std::string& warns){
     registerent(warns,0);
 }
-void log::error(const std::string& error){
+void logger::error(const std::string& error){
     registerent(error,1);
 }
-void log::critical(const std::string& critical){
+void logger::critical(const std::string& critical){
     registerent(critical,2);
 }
-void log::info(const std::string& info){
+void logger::info(const std::string& info){
     registerent(info,4);
 }
 
-log::~log(){
+logger::~logger(){
     registerent("system",3);
 }
