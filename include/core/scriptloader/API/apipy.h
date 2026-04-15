@@ -44,7 +44,7 @@ public:
     std::string transform(position pocisionodj,int odjid);
     std::string Change_V(int odjid,std::variant<int,std::string,float> Value);
     std::variant<int,std::string,float,position> Get_V(int odjid);
-
+    std::string call_F(int odjid,int fuction_P);
     ~EngineAPY();
 };
 

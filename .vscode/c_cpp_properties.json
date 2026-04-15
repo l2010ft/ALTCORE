@@ -5,7 +5,8 @@
             "includePath": [
                 "${workspaceFolder}/**",
                 "${workspaceFolder}/include/log",
-                "${workspaceFolder}/include/GUI"
+                "${workspaceFolder}/include/GUI",
+                "C:/Users/Ryzen/AppData/Local/Programs/Python/Python313/include"
             ],
             "defines": [
                 "_DEBUG",
