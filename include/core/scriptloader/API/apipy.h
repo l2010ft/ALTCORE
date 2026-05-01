@@ -80,13 +80,17 @@ PYBIND11_MODULE(AlTCORE,alt) {
         .def_readwrite("posicion",&position::Posicion)
         .def_readwrite("rotation",&position::rotacion)
     ;
-    
+
     py::class_<colision_odjs>(alt,"colision")
         .def(py::init<>())
         .def_readwrite("odjects",&colision_odjs::objects)
     ;
     py::class_<Entity>(alt , "Entity")
-        .def(py::init<std::string>())
+        .def(py::init<std::string,position,float>())
+        .def("component_colision", &Entity::component_colision)
+        .def("script_component", &Entity::component_colision)
+        .def("animation_component", &Entity::animation_component)
+        .def("Getcolision", &Entity::Colision)
     ;
 
 }
