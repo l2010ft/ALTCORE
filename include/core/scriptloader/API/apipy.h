@@ -34,15 +34,17 @@ private:
     float size;
     bool colision;
 public:
-    Entity(std::string model_direction,position first_p,float size_s);
+    Entity(std::string model_direction,position first_p,float size_s); // Define la creacion de una entidad
 
     std::string component_colision(fisicmodel tipe_colision,fisicmodel_med med_colision); 
     
-    std::string script_component(std::string script_direction);
+    std::string script_component(std::string script_direction); 
 
     std::string animation_component(std::string animation_direction);
 
     std::optional<colision_odjs> Colision();    
+
+    ~Entity();
 };
 
 class EngineAPY
@@ -92,5 +94,7 @@ PYBIND11_MODULE(AlTCORE,alt) {
         .def("animation_component", &Entity::animation_component)
         .def("Getcolision", &Entity::Colision)
     ;
-
+    py::class_<EngineAPY>(alt,"Engine")
+        .def(py::init<>)
+    ;
 }
